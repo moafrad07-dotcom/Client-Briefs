@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Client Brief</title>
+<meta name="description" content="Client brief for company profile design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap">
+<style>
+/* Layout: single column of numbered sections, hand-drawn blue scribbles, mono type on white (deep navy in dark) */
+:root{
+  --bg:#ffffff;
+  --ink:#1f2fd8;
+  --ink-2:#4a57e0;
+  --soft:#eef0ff;
+  --line:#b9bffa;
+  --danger:#c4261d;
+  --on-ink:#ffffff;
+  --mono:"IBM Plex Mono","Courier New",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0d2b;--ink:#97a3ff;--ink-2:#7885f2;--soft:#141a4d;--line:#38418f;--danger:#ff8a80;--on-ink:#0a0d2b;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a0d2b;--ink:#97a3ff;--ink-2:#7885f2;--soft:#141a4d;--line:#38418f;--danger:#ff8a80;--on-ink:#0a0d2b;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:15px;line-height:1.55;margin:0;padding-inline:20px}
+.wrap{max-width:760px;margin-inline:auto}
+::selection{background:var(--ink);color:var(--on-ink)}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 0;margin-inline:-20px;padding-inline:20px}
+.bar-inner{max-width:760px;margin-inline:auto;display:flex;justify-content:space-between;gap:12px;font-size:12px}
+.bar b{font-weight:700}
+.meter{height:3px;background:var(--soft);margin-top:10px;max-width:760px;margin-inline:auto}
+.meter i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s}
+
+/* cover */
+.cover{padding-block:56px 12px}
+.year{font-size:18px;margin:0 0 6px 6px}
+.title{position:relative;display:inline-block;margin:0;font-weight:700;font-size:clamp(30px,9vw,76px);line-height:1;padding:18px 22px;letter-spacing:-.02em}
+.title svg{position:absolute;inset:-6px -14px;width:calc(100% + 28px);height:calc(100% + 12px);overflow:visible;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;pointer-events:none}
+.lede{max-width:46ch;margin:28px 0 0;font-size:15px}
+.lede + .lede{margin-top:10px;font-weight:700;font-size:13px}
+
+/* sections */
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.sec{padding-block:52px 4px}
+.sec h2{position:relative;display:inline-block;margin:0 0 4px;font-size:clamp(28px,7vw,40px);line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.sec h2 svg{display:block;width:100%;height:14px;margin-top:4px;overflow:visible;fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.sec .no{display:block;font-size:12px;font-weight:700;margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px 18px;margin-top:26px}
+.f{grid-column:span 6;min-width:0}
+.f.h{grid-column:span 3}
+.f.t{grid-column:span 2}
+@media (max-width:620px){.f.h,.f.t{grid-column:span 6}}
+label,.lbl{display:block;font-size:12px;font-weight:700;margin-bottom:6px}
+.q{font-size:14px;font-weight:700;margin-bottom:2px;display:block}
+.q small{font-weight:400}
+.hint{display:block;font-size:12px;margin:0 0 6px;opacity:.82}
+.req{color:var(--ink)}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=date],textarea{
+  width:100%;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1.5px solid var(--ink);
+  padding:8px 2px;border-radius:0;outline:0;appearance:none;-webkit-appearance:none;
+}
+textarea{resize:vertical;min-height:84px;line-height:23px;padding:6px 2px;
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 21.5px,var(--line) 21.5px,var(--line) 23px);
+  border-bottom:0;background-position:0 4px}
+input::placeholder,textarea::placeholder{color:var(--ink);opacity:.38}
+input:focus-visible,textarea:focus-visible{background-color:var(--soft);box-shadow:0 2px 0 0 var(--ink)}
+input[type=date]{min-height:42px}
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px 18px;margin-top:8px}
+.ck{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:400;margin:0;cursor:pointer;padding:5px 0}
+.ck input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:1.8px solid var(--ink);background:var(--bg);margin:0;flex:none;display:grid;place-content:center;cursor:pointer}
+.ck input::after{content:"";width:10px;height:10px;background:var(--ink);transform:scale(0);transition:transform .12s}
+.ck input:checked::after{transform:scale(1)}
+.ck input:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.err{display:none;color:var(--danger);font-size:12px;margin-top:6px;font-weight:700}
+.f.bad .err{display:block}
+.f.bad input[type=text],.f.bad input[type=email],.f.bad input[type=tel]{border-bottom-color:var(--danger)}
+.ack{background:var(--soft);border:1.5px solid var(--ink);padding:16px;margin-top:6px}
+.ack .ck{align-items:flex-start;font-weight:700;font-size:13px}
+.ack .ck input{margin-top:2px}
+
+/* actions */
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:44px;padding-bottom:20px}
+.btn{font:inherit;font-weight:700;font-size:15px;cursor:pointer;border:1.8px solid var(--ink);background:var(--ink);color:var(--on-ink);padding:14px 26px;border-radius:0}
+.btn:hover{background:var(--ink-2);border-color:var(--ink-2)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--soft)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn[disabled]{opacity:.55;cursor:default}
+.note{font-size:12px;max-width:52ch}
+.draft{font-size:12px;opacity:.8}
+footer{padding-block:28px 40px;font-size:11px;opacity:.75;max-width:760px;margin-inline:auto}
+
+/* done */
+#done{display:none;padding-block:60px 40px}
+.thanks{position:relative;display:inline-block;font-size:clamp(30px,9vw,68px);font-weight:700;line-height:1;margin:0;padding:16px 22px;letter-spacing:-.02em}
+.thanks svg{position:absolute;inset:-6px -14px;width:calc(100% + 28px);height:calc(100% + 12px);overflow:visible;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;pointer-events:none}
+.status{margin-top:30px;max-width:56ch}
+.status b{display:block;font-size:17px;margin-bottom:6px}
+.brief{margin-top:30px;border:1.5px solid var(--ink);padding:22px 22px 6px;max-width:68ch}
+.brief h3{font-size:15px;margin:0 0 8px;font-weight:700}
+.brief section{margin-bottom:20px}
+.brief p{margin:0 0 10px;font-size:14px;line-height:1.65}
+.brief .gap{background:var(--soft);padding:12px;margin-bottom:20px}
+.fail{margin-top:18px;border:1.5px solid var(--danger);padding:14px 16px;max-width:60ch;font-size:13px;display:grid;gap:8px;justify-items:start}
+.fail b{color:var(--danger)}
+textarea.sum{position:absolute;left:-9999px;width:1px;height:1px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+</head>
+<body>
+<div class="bar">
+  <div class="bar-inner"><span><b>Design Process</b> &nbsp;client brief</span><span id="pct">0% filled</span></div>
+  <div class="meter"><i id="meterfill"></i></div>
+</div>
+
+<div class="wrap">
+<main id="formview">
+  <header class="cover">
+    <p class="year">2026</p>
+    <h1 class="title" id="cover-title">client brief</h1>
+    <p class="lede">Company profile design. Your answers set the purpose, message, content and look of the profile. It takes about 15 minutes.</p>
+    <p class="lede">Fill what you can. Skip the rest and it will be noted as a content gap.</p>
+  </header>
+
+  <form id="brief" novalidate autocomplete="on">
+    <div id="sections"></div>
+
+    <div class="actions">
+      <button type="submit" class="btn" id="send">Send brief</button>
+      <button type="button" class="btn ghost" id="clear">Clear form</button>
+      <span class="draft" id="draft"></span>
+    </div>
+    <p class="note">Your answers are kept on this device as you type, so you can close the page and come back.</p>
+    <div class="fail" id="sendfail" role="alert" hidden>
+      <b>Your brief could not be sent.</b>
+      <span>Check your internet connection and press Send brief again. If it still fails, copy your answers and send them to your designer by email or message.</span>
+      <button type="button" class="btn ghost" id="copyfail">Copy my answers</button>
+    </div>
+  </form>
+</main>
+
+<section id="done" aria-live="polite">
+  <h2 class="thanks" id="thanks-title">thank you</h2>
+  <div class="status">
+    <b>Your brief has been received.</b>
+    <span>We will review your answers and come back to you soon.</span>
+  </div>
+</section>
+
+<footer>Design Process &middot; company profile &middot; feedback is collected in one consolidated round, with revisions within 48 hours of delivery.</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  /* ---------- questions ---------- */
+  var S = [
+    {n:"01",t:"the company",f:[
+      {id:"company",l:"company name",type:"text",w:"h",req:1},
+      {id:"industry",l:"industry",type:"text",w:"h"},
+      {id:"founded",l:"year founded",type:"text",w:"t"},
+      {id:"website",l:"website",type:"url",w:"t",ph:"https://"},
+      {id:"locations",l:"locations",type:"text",w:"t"},
+      {id:"contact",l:"contact person",type:"text",w:"h",req:1},
+      {id:"role",l:"role",type:"text",w:"h"},
+      {id:"email",l:"email",type:"email",w:"h",req:1},
+      {id:"phone",l:"phone",type:"tel",w:"h"},
+      {id:"describe",q:"1.1",l:"Describe the company in two or three sentences.",type:"area"},
+      {id:"offer",q:"1.2",l:"What are your main products or services?",hint:"List the top three if there are many.",type:"area"},
+      {id:"story",q:"1.3",l:"Your story: history, milestones, what drove the founding.",type:"area"}
+    ]},
+    {n:"02",t:"purpose + audience",f:[
+      {id:"purpose",q:"2.1",l:"What is the profile mainly for?",note:"tick one primary",type:"check",o:["Investors","Clients","Tenders","Hiring","General credibility","Other"]},
+      {id:"readers",q:"2.2",l:"Who will read it?",note:"tick all",type:"check",o:["Business owners","Procurement teams","Government bodies","Investors","Job candidates","Distributors"]},
+      {id:"action",q:"2.3",l:"After reading, what should the reader decide or do?",hint:"For example: request a quote, book a meeting, shortlist us.",type:"area"},
+      {id:"format",q:"2.4",l:"Format needed",note:"tick all",type:"check",o:["PDF","Print","Web page","Slide deck"]},
+      {id:"pages",l:"approx. page count",type:"text",w:"t"},
+      {id:"size",l:"print size (A4, A5...)",type:"text",w:"t"},
+      {id:"langs",l:"languages",type:"text",w:"t"},
+      {id:"usage",q:"2.5",l:"Where will it be used?",hint:"Email, tender submissions, exhibitions, meetings, website download.",type:"area"}
+    ]},
+    {n:"03",t:"competitors",f:[
+      {id:"comps",q:"3.1",l:"Name 3 to 5 competitors, with links if possible.",type:"area"},
+      {id:"compnotes",q:"3.2",l:"What do competitors do well, and what do they miss?",type:"area"}
+    ]},
+    {n:"04",t:"proof + content",f:[
+      {id:"usp",q:"4.1",l:"What can you claim that competitors cannot?",hint:"Your USP: speed, quality, scale, price, certifications, location.",type:"area"},
+      {id:"numbers",q:"4.2",l:"Key numbers we can use.",hint:"Years in business, projects completed, clients served, capacity, reach, team size.",type:"area"},
+      {id:"clients",q:"4.3",l:"Key clients or partners we can name.",type:"area"},
+      {id:"certs",q:"4.4",l:"Certifications, awards, licences.",type:"area"},
+      {id:"proof",q:"4.5",l:"What proof do you have ready?",note:"tick all",type:"check",o:["Testimonials","Case studies","Project photos","Team photos","Product photos","Reports or data"]},
+      {id:"weak",q:"4.6",l:"Weaknesses or sensitive points we should frame carefully.",hint:"For example: young company, small team, limited portfolio.",type:"area"},
+      {id:"leaveout",q:"4.7",l:"Anything that must be left out.",type:"area"}
+    ]},
+    {n:"05",t:"brand + tone",f:[
+      {id:"assets",q:"5.1",l:"Brand assets you can send",note:"tick all",type:"check",o:["Logo (vector)","Brand colors","Fonts","Brand guidelines","Old profile / brochure","Social links"]},
+      {id:"message",q:"5.2",l:"The one message the profile should leave the reader with.",hint:"For example: reliable manufacturer, creative partner.",type:"area"},
+      {id:"tone",q:"5.3",l:"Tone",note:"tick up to two",type:"check",o:["Formal","Modern","Friendly","Bold","Minimal","Premium"],max:2},
+      {id:"refs",q:"5.4",l:"Profiles, brands or websites whose look you like, and why.",type:"area"}
+    ]},
+    {n:"06",t:"timeline + sign-off",f:[
+      {id:"due",l:"needed by (date)",type:"date",w:"h"},
+      {id:"decider",l:"decision maker",type:"text",w:"h"},
+      {id:"approver",l:"who approves the final file",type:"text",w:"h"},
+      {id:"approvermail",l:"approval contact (email)",type:"email",w:"h"},
+      {id:"ack",type:"ack",req:1,l:"I understand that feedback is collected in one consolidated round, and that I have 48 hours after delivery to request revisions."},
+      {id:"signname",l:"name",type:"text",w:"h",req:1},
+      {id:"signdate",l:"date",type:"date",w:"h"}
+    ]}
+  ];
+
+  var KEY = "design-process-brief-v1";
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+
+  /* ---------- scribbles ---------- */
+  function rng(seed){var s=seed;return function(){s=(s*9301+49297)%233280;return s/233280}}
+  function ellipsePaths(w,h,seed){
+    var r=rng(seed),cx=w/2,cy=h/2,rx=w/2,ry=h/2,out="";
+    for(var p=0;p<2;p++){
+      var rot=(r()-.5)*.1,t0=r()*1,n=80,d="";
+      for(var i=0;i<=n;i++){
+        var t=t0+i/n*(2*Math.PI+.55+.2*p);
+        var k=1+.02*Math.sin(t*3+p)+(i/n)*(p?-.05:.06);
+        var px=rx*k*Math.cos(t),py=ry*k*Math.sin(t);
+        var x=cx+px*Math.cos(rot)-py*Math.sin(rot),y=cy+px*Math.sin(rot)+py*Math.cos(rot);
+        d+=(i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1);
+      }
+      out+='<path d="'+d+'"/>';
+    }
+    return out;
+  }
+  function ellipseSvg(el,seed){
+    var w=el.offsetWidth+28,h=el.offsetHeight+12;
+    var svg=el.querySelector("svg");
+    if(!svg){svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("aria-hidden","true");el.appendChild(svg)}
+    svg.setAttribute("viewBox","0 0 "+w+" "+h);
+    svg.setAttribute("preserveAspectRatio","none");
+    svg.innerHTML=ellipsePaths(w,h,seed);
+  }
+  function underlineSvg(seed){
+    var r=rng(seed),out="";
+    for(var p=0;p<2;p++){
+      var x=p*5,d="M"+x+" "+(7+(r()-.5)*4+p*3);
+      while(x<296){x+=14+r()*10;d+="L"+Math.min(x,300).toFixed(0)+" "+(7+(r()-.5)*7+p*3).toFixed(1)}
+      out+='<path d="'+d+'"/>';
+    }
+    return '<svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">'+out+'</svg>';
+  }
+
+  /* ---------- build form ---------- */
+  var root=$("#sections");
+  var html="";
+  S.forEach(function(sec,si){
+    html+='<fieldset class="sec"><legend style="position:absolute;left:-9999px">'+esc(sec.t)+'</legend>'+
+      '<span class="no">'+sec.n+'</span><h2>'+esc(sec.t)+underlineSvg(si*7+3)+'</h2><div class="grid">';
+    sec.f.forEach(function(f){
+      var cls="f"+(f.w?" "+f.w:"");
+      if(f.type==="text"||f.type==="email"||f.type==="tel"||f.type==="url"||f.type==="date"){
+        html+='<div class="'+cls+'" data-f="'+f.id+'"><label for="'+f.id+'">'+esc(f.l)+(f.req?' <span class="req">*</span>':'')+'</label>'+
+          '<input type="'+(f.type==="text"?"text":f.type)+'" id="'+f.id+'" name="'+f.id+'"'+(f.ph?' placeholder="'+f.ph+'"':'')+(f.type==="email"?' autocomplete="email"':'')+'>'+
+          '<span class="err">'+(f.type==="email"?"Enter a valid email address.":"This field is needed.")+'</span></div>';
+      }else if(f.type==="area"){
+        html+='<div class="'+cls+'" data-f="'+f.id+'"><label for="'+f.id+'" class="q"><span>'+f.q+'</span>&nbsp; '+esc(f.l)+'</label>'+
+          (f.hint?'<span class="hint">'+esc(f.hint)+'</span>':'')+'<textarea id="'+f.id+'" name="'+f.id+'" rows="3"></textarea></div>';
+      }else if(f.type==="check"){
+        html+='<div class="'+cls+'" data-f="'+f.id+'"><span class="lbl q"><span>'+f.q+'</span>&nbsp; '+esc(f.l)+(f.note?' <small>('+esc(f.note)+')</small>':'')+'</span><div class="checks" role="group" aria-label="'+esc(f.l)+'">'+
+          f.o.map(function(o,i){return '<label class="ck" for="'+f.id+'_'+i+'"><input type="checkbox" id="'+f.id+'_'+i+'" name="'+f.id+'" value="'+esc(o)+'"><span>'+esc(o)+'</span></label>'}).join("")+'</div></div>';
+      }else if(f.type==="ack"){
+        html+='<div class="'+cls+'" data-f="'+f.id+'"><div class="ack"><label class="ck" for="'+f.id+'"><input type="checkbox" id="'+f.id+'" name="'+f.id+'"><span>'+esc(f.l)+' <span class="req">*</span></span></label></div><span class="err">Tick this box to send the brief.</span></div>';
+      }
+    });
+    html+='</div></fieldset>';
+  });
+  root.innerHTML=html;
+
+  /* limit tick counts */
+  S.forEach(function(sec){sec.f.forEach(function(f){
+    if(f.max){
+      root.addEventListener("change",function(e){
+        var t=e.target;
+        if(t.name!==f.id||!t.checked)return;
+        var on=[].slice.call(root.querySelectorAll('input[name="'+f.id+'"]:checked'));
+        if(on.length>f.max){t.checked=false}
+      });
+    }
+  })});
+
+  /* ---------- values / draft ---------- */
+  var all=[];S.forEach(function(s){s.f.forEach(function(f){all.push(f)})});
+  function read(){
+    var v={};
+    all.forEach(function(f){
+      if(f.type==="check"){v[f.id]=[].slice.call(root.querySelectorAll('input[name="'+f.id+'"]:checked')).map(function(i){return i.value})}
+      else if(f.type==="ack"){v[f.id]=$("#"+f.id).checked}
+      else v[f.id]=$("#"+f.id).value.trim();
+    });
+    return v;
+  }
+  function write(v){
+    all.forEach(function(f){
+      var x=v[f.id];if(x==null)return;
+      if(f.type==="check"){[].slice.call(root.querySelectorAll('input[name="'+f.id+'"]')).forEach(function(i){i.checked=x.indexOf(i.value)>-1})}
+      else if(f.type==="ack"){$("#"+f.id).checked=!!x}
+      else $("#"+f.id).value=x;
+    });
+  }
+  function filled(v){
+    var n=0,tot=0;
+    all.forEach(function(f){
+      if(f.type==="ack")return;
+      tot++;
+      var x=v[f.id];
+      if(Array.isArray(x)?x.length:x)n++;
+    });
+    return Math.round(100*n/tot);
+  }
+  var tmr;
+  function progress(){
+    var p=filled(read());
+    $("#pct").textContent=p+"% filled";
+    $("#meterfill").style.width=p+"%";
+  }
+  function saveDraft(){
+    progress();
+    clearTimeout(tmr);
+    tmr=setTimeout(function(){
+      try{localStorage.setItem(KEY,JSON.stringify(read()));$("#draft").textContent="draft saved on this device"}catch(e){}
+    },350);
+  }
+  try{var d=localStorage.getItem(KEY);if(d){write(JSON.parse(d))}}catch(e){}
+  progress();
+  $("#brief").addEventListener("input",saveDraft);
+  $("#brief").addEventListener("change",saveDraft);
+
+  $("#clear").addEventListener("click",function(){
+    if(!this.dataset.sure){this.dataset.sure="1";this.textContent="Tap again to clear";var b=this;setTimeout(function(){delete b.dataset.sure;b.textContent="Clear form"},3500);return}
+    delete this.dataset.sure;this.textContent="Clear form";
+    $("#brief").reset();try{localStorage.removeItem(KEY)}catch(e){}
+    $("#draft").textContent="";progress();
+  });
+
+  /* ---------- validate + summary ---------- */
+  function validate(v){
+    var firstBad=null;
+    all.forEach(function(f){
+      var box=$('[data-f="'+f.id+'"]'),bad=false;
+      if(f.req){
+        if(f.type==="ack")bad=!v[f.id];else bad=!v[f.id];
+      }
+      if(!bad&&f.type==="email"&&v[f.id]&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v[f.id]))bad=true;
+      box.classList.toggle("bad",bad);
+      if(bad&&!firstBad)firstBad=box;
+    });
+    return firstBad;
+  }
+  function summary(v){
+    var out=["CLIENT BRIEF - Design Process","Submitted "+new Date().toLocaleString(),""];
+    S.forEach(function(sec){
+      out.push("== "+sec.n+" "+sec.t.toUpperCase()+" ==");
+      sec.f.forEach(function(f){
+        if(f.type==="ack"){out.push("Revision terms accepted: "+(v[f.id]?"yes":"no"));return}
+        var x=v[f.id];x=Array.isArray(x)?x.join(", "):x;
+        out.push((f.q?f.q+" ":"")+f.l.replace(/\.$/,"")+": "+(x||"-"));
+      });
+      out.push("");
+    });
+    return out.join("\n");
+  }
+
+  /* ---------- brief in paragraphs ---------- */
+  function T(x){return (x||"").trim()}
+  function endp(x){x=T(x);return x?(/[.!?]$/.test(x)?x:x+"."):""}
+  function lowerFirst(x){return x?x.charAt(0).toLowerCase()+x.slice(1):x}
+  function joinList(a){a=a.filter(Boolean);if(a.length<2)return a[0]||"";return a.slice(0,-1).join(", ")+" and "+a[a.length-1]}
+  function opts(a){return joinList((a||[]).map(function(o){return o==="PDF"?o:lowerFirst(o)}))}
+  function niceDate(d){if(!d)return"";var x=new Date(d+"T00:00:00");return isNaN(x)?d:x.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+  function compose(v){
+    var B=[],co=T(v.company)||"The client";
+    function sec(h,ps){ps=ps.filter(Boolean);if(ps.length)B.push({h:h,p:ps})}
+    var intro=[];
+    if(T(v.industry))intro.push("operates in "+T(v.industry));
+    if(T(v.founded))intro.push("was founded in "+T(v.founded));
+    if(T(v.locations))intro.push("is based in "+T(v.locations));
+    var p1=intro.length?co+" "+joinList(intro)+".":co+" has asked for a company profile.";
+    var contact=T(v.contact)?"The main contact is "+T(v.contact)+(T(v.role)?", "+T(v.role):"")+(T(v.email)?", reachable at "+T(v.email)+(T(v.phone)?" or "+T(v.phone):""):(T(v.phone)?", reachable at "+T(v.phone):""))+".":"";
+    sec("The company",[p1,endp(v.describe),T(v.offer)?"Main products and services: "+endp(v.offer):"",T(v.story)?"Background: "+endp(v.story):"",contact,T(v.website)?"Website: "+T(v.website)+".":""]);
+    var fmt=[];
+    if(v.format&&v.format.length)fmt.push("The profile is needed as "+opts(v.format));
+    var spec=[];if(T(v.pages))spec.push("about "+T(v.pages)+" pages");if(T(v.size))spec.push("size "+T(v.size));if(T(v.langs))spec.push("in "+T(v.langs));
+    if(spec.length)fmt.push((fmt.length?"with ":"The profile is planned at ")+joinList(spec));
+    sec("Purpose and audience",[
+      v.purpose&&v.purpose.length?"The profile is mainly for "+opts(v.purpose)+".":"",
+      v.readers&&v.readers.length?"The intended readers are "+opts(v.readers)+".":"",
+      T(v.action)?"After reading, the reader should "+lowerFirst(endp(v.action)):"",
+      fmt.length?fmt.join(", ")+".":"",
+      T(v.usage)?"It will be used for: "+endp(v.usage):""
+    ]);
+    sec("Competitors",[T(v.comps)?"Competitors named: "+endp(v.comps):"",T(v.compnotes)?"What they do well and what they miss: "+endp(v.compnotes):""]);
+    sec("Proof and key claims",[
+      T(v.usp)?"What sets "+co+" apart: "+endp(v.usp):"",
+      T(v.numbers)?"Key figures available: "+endp(v.numbers):"",
+      T(v.clients)?"Clients and partners that can be named: "+endp(v.clients):"",
+      T(v.certs)?"Certifications, awards and licences: "+endp(v.certs):"",
+      v.proof&&v.proof.length?"Proof ready to supply: "+opts(v.proof)+".":"",
+      T(v.weak)?"To frame carefully: "+endp(v.weak):"",
+      T(v.leaveout)?"To leave out: "+endp(v.leaveout):""
+    ]);
+    sec("Brand and tone",[
+      T(v.message)?"The one message the profile should leave: "+endp(v.message):"",
+      v.tone&&v.tone.length?"The preferred tone is "+opts(v.tone)+".":"",
+      v.assets&&v.assets.length?"Brand assets that can be supplied: "+opts(v.assets)+".":"",
+      T(v.refs)?"Visual references the client likes: "+endp(v.refs):""
+    ]);
+    var ap=[];
+    if(T(v.due))ap.push("The profile is needed by "+niceDate(v.due)+".");
+    if(T(v.decider))ap.push("The decision maker is "+T(v.decider)+".");
+    if(T(v.approver))ap.push("Final approval comes from "+T(v.approver)+(T(v.approvermail)?" ("+T(v.approvermail)+")":"")+".");
+    if(v.ack)ap.push("The client has accepted the revision terms: feedback in one consolidated round, with revisions requested within 48 hours of delivery."+(T(v.signname)?" Signed by "+T(v.signname)+(T(v.signdate)?" on "+niceDate(v.signdate):"")+".":""));
+    sec("Timeline and approval",ap);
+    var gl=[["describe","a company description"],["offer","products and services"],["story","the company story"],["usp","what sets the company apart"],["numbers","key figures"],["clients","named clients"],["certs","certifications"],["proof","proof such as testimonials and photos"],["message","the core message"],["tone","tone"],["assets","brand assets"],["comps","competitors"],["due","a deadline"]];
+    var miss=gl.filter(function(g){var x=v[g[0]];return Array.isArray(x)?!x.length:!T(x)}).map(function(g){return g[1]});
+    if(miss.length)B.push({h:"Still needed from the client",p:["Not yet provided: "+joinList(miss)+"."],gap:1});
+    return B;
+  }
+  function qaBlocks(v){
+    return S.map(function(sec){
+      return {h:sec.t,qa:sec.f.map(function(f){
+        if(f.type==="ack")return ["Revision terms accepted",v[f.id]?"Yes":"No"];
+        var x=v[f.id];x=Array.isArray(x)?x.join(", "):x;
+        return [f.l.replace(/\.$/,""),x||"-"];
+      })};
+    });
+  }
+  function blocksText(B){
+    return B.map(function(b){return b.h.toUpperCase()+"\n"+(b.p?b.p.join("\n\n"):b.qa.map(function(r){return r[0]+": "+r[1]}).join("\n"))}).join("\n\n");
+  }
+  /* ---------- PDF ---------- */
+  function clean(x){
+    return String(x).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-").replace(/…/g,"...").replace(/[^\x09\x0A\x0D\x20-\xFF]/g,"?");
+  }
+  function makePdf(title,sub,B){
+    var J=window.jspdf&&window.jspdf.jsPDF;if(!J)return null;
+    var d=new J({unit:"pt",format:"a4"}),W=595,H=842,M=54,CW=W-2*M,y=M+6,pg=1;
+    var BL=[31,47,216],INK=[24,32,120];
+    function foot(){d.setFont("courier","normal");d.setFontSize(8);d.setTextColor.apply(d,BL);d.text("Design Process   client brief",M,H-30);d.text(String(pg),W-M,H-30,{align:"right"})}
+    function need(h){if(y+h>H-56){foot();d.addPage();pg++;y=M+6}}
+    function scrib(x1,x2,yy,seed){
+      d.setDrawColor.apply(d,BL);d.setLineWidth(1.6);
+      for(var p=0;p<2;p++){
+        var x=x1+p*4,py=yy+p*2.5,r=seed+p*13;
+        while(x<x2){r=(r*9301+49297)%233280;var nx=Math.min(x+10+(r/233280)*9,x2);r=(r*9301+49297)%233280;var ny=yy+p*2.5+((r/233280)-.5)*5;d.line(x,py,nx,ny);x=nx;py=ny}
+      }
+    }
+    d.setFont("courier","bold");d.setFontSize(30);d.setTextColor.apply(d,BL);d.text(clean(title),M,y+24);y+=36;
+    scrib(M,M+d.getTextWidth(clean(title)),y,3);y+=22;
+    d.setFontSize(12);d.text(clean(sub),M,y);y+=8;
+    d.setFont("courier","normal");d.setFontSize(8.5);d.text("Design Process  |  "+new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}),M,y+12);y+=34;
+    B.forEach(function(b,bi){
+      need(60);
+      d.setFont("courier","bold");d.setFontSize(15);d.setTextColor.apply(d,BL);d.text(clean(b.h),M,y);
+      scrib(M,M+Math.min(d.getTextWidth(clean(b.h)),CW),y+7,bi*7+5);y+=26;
+      if(b.p){
+        d.setFont("courier","normal");d.setFontSize(10);d.setTextColor.apply(d,INK);
+        b.p.forEach(function(p){
+          var ls=d.splitTextToSize(clean(p),CW);
+          ls.forEach(function(l){need(15);d.text(l,M,y);y+=14.5});
+          y+=7;
+        });
+      }else{
+        b.qa.forEach(function(r){
+          need(32);
+          d.setFont("courier","bold");d.setFontSize(9);d.setTextColor.apply(d,BL);
+          d.splitTextToSize(clean(r[0]),CW).forEach(function(l){need(13);d.text(l,M,y);y+=12.5});
+          d.setFont("courier","normal");d.setFontSize(10);d.setTextColor.apply(d,INK);
+          d.splitTextToSize(clean(r[1]),CW).forEach(function(l){need(15);d.text(l,M,y);y+=14});
+          y+=7;
+        });
+      }
+      y+=10;
+    });
+    foot();
+    return d.output("blob");
+  }
+  function fileName(kind){
+    var n=(T($("#company").value)||"client").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"client";
+    return n+"-"+kind+".pdf";
+  }
+  var curBrief=[],curQA=[],curCo="";
+
+  /* ---------- send to the studio (Google Apps Script) ---------- */
+  var SCRIPT_URL="PASTE_YOUR_WEB_APP_URL_HERE";   /* from Deploy > Web app in Apps Script */
+  var SECRET="change-me";                          /* must match SECRET in Code.gs */
+  var current="";
+  function b64(blob){
+    return new Promise(function(res,rej){
+      var r=new FileReader();
+      r.onload=function(){res(String(r.result).split(",")[1])};
+      r.onerror=rej;r.readAsDataURL(blob);
+    });
+  }
+  function sendToStudio(v){
+    if(SCRIPT_URL.indexOf("https://script.google.com/macros/s/AKfycbxAdbe8Qsf2xwZIt-HuDJ4D7YevekKXhHriVCgkeQJZWVHKywgjXly0ThxmJ3mJDHKj3w/exec")!==0)return Promise.reject(new Error("not configured"));
+    var p1=makePdf("client brief",curCo+" - project brief",curBrief);
+    var p2=makePdf("client answers",curCo+" - full answers",curQA);
+    return Promise.all([p1?b64(p1):"",p2?b64(p2):""]).then(function(x){
+      var payload={
+        token:SECRET,hp:"afrad",
+        company:v.company||"",contact:v.contact||"",email:v.email||"",phone:v.phone||"",
+        brief:blocksText(curBrief),
+        briefName:fileName("brief"),briefPdf:x[0],
+        answersName:fileName("answers"),answersPdf:x[1]
+      };
+      return fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+    }).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw new Error("rejected");return true});
+  }
+  $("#brief").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=read(),bad=validate(v);
+    if(bad){bad.scrollIntoView({block:"center"});var i=bad.querySelector("input");if(i)i.focus();return}
+    curBrief=compose(v);curQA=qaBlocks(v);curCo=T(v.company)||"Client";current=blocksText(curBrief)+"\n\n----- FULL ANSWERS -----\n\n"+summary(v);
+    var btn=$("#send");btn.disabled=true;btn.textContent="Sending...";
+    $("#sendfail").hidden=true;
+    sendToStudio(v).catch(function(){return false}).then(function(ok){
+      btn.disabled=false;btn.textContent="Send brief";
+      if(ok){showDone()}else{$("#sendfail").hidden=false;$("#sendfail").scrollIntoView({block:"center"})}
+    });
+  });
+  function showDone(){
+    $("#formview").style.display="none";
+    $("#done").style.display="block";
+    try{localStorage.removeItem(KEY)}catch(e){}
+    ellipseSvg($("#thanks-title"),11);
+    window.scrollTo(0,0);
+  }
+  $("#copyfail").addEventListener("click",function(){
+    var b=this,ta=document.createElement("textarea");
+    ta.value=current;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);
+    function done(t){b.textContent=t;setTimeout(function(){b.textContent="Copy my answers"},2500)}
+    try{navigator.clipboard.writeText(current).then(function(){done("Copied")},function(){ta.select();document.execCommand("copy");done("Copied")})}
+    catch(e){ta.select();try{document.execCommand("copy");done("Copied")}catch(x){done("Select and copy manually")}}
+    setTimeout(function(){ta.remove()},500);
+  });
+
+  /* cover ellipse */
+  function cover(){ellipseSvg($("#cover-title"),4)}
+  cover();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(cover);
+  var rt;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(cover,150)});
+})();
+</script>
+</body>
+</html>
