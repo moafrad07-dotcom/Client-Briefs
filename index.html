@@ -500,8 +500,8 @@ textarea.sum{position:absolute;left:-9999px;width:1px;height:1px}
   var curBrief=[],curQA=[],curCo="";
 
   /* ---------- send to the studio (Google Apps Script) ---------- */
-  var SCRIPT_URL="PASTE_YOUR_WEB_APP_URL_HERE";   /* from Deploy > Web app in Apps Script */
-  var SECRET="change-me";                          /* must match SECRET in Code.gs */
+  var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxAdbe8Qsf2xwZIt-HuDJ4D7YevekKXhHriVCgkeQJZWVHKywgjXly0ThxmJ3mJDHKj3w/exec";
+  var SECRET="afrad";                         /* must match SECRET in Code.gs */
   var current="";
   function b64(blob){
     return new Promise(function(res,rej){
@@ -511,12 +511,12 @@ textarea.sum{position:absolute;left:-9999px;width:1px;height:1px}
     });
   }
   function sendToStudio(v){
-    if(SCRIPT_URL.indexOf("https://script.google.com/macros/s/AKfycbxAdbe8Qsf2xwZIt-HuDJ4D7YevekKXhHriVCgkeQJZWVHKywgjXly0ThxmJ3mJDHKj3w/exec")!==0)return Promise.reject(new Error("not configured"));
+    if(SCRIPT_URL.indexOf("https://")!==0)return Promise.reject(new Error("not configured"));
     var p1=makePdf("client brief",curCo+" - project brief",curBrief);
     var p2=makePdf("client answers",curCo+" - full answers",curQA);
     return Promise.all([p1?b64(p1):"",p2?b64(p2):""]).then(function(x){
       var payload={
-        token:SECRET,hp:"afrad",
+        token:SECRET,hp:"",
         company:v.company||"",contact:v.contact||"",email:v.email||"",phone:v.phone||"",
         brief:blocksText(curBrief),
         briefName:fileName("brief"),briefPdf:x[0],
